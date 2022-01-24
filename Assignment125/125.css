@@ -1,0 +1,85 @@
+body
+{
+  font-family: sans-serif;
+  background: white;
+  color:      black;
+  width: 80%;
+  background-image: url(http://a.mktgcdn.com/p/-HXWpSbluOclMbBgg3ebzq_ohTMZxDQ25OE2tk4ir0c/1382x1382.png);
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.itemtypeinlist:hover
+{
+  font-style: italic;
+  font-weight: bold;
+  font-size: large;
+}
+
+.picture
+{
+  text-align: center;
+}
+
+.type
+{
+  text-align: center;
+  background-color: rgb(241, 36, 248);
+
+}
+
+.itemdescription
+{
+  border: 2px dotted #000000;
+  background-color: white;
+}
+
+#detailofdiscount:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#discountdate
+{
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#titlename
+{
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#discountitems
+{
+  border-collapse: collapse;
+}
+
+tr:nth-child(odd)
+{
+  background-color: yellow;
+}
+
+tr:nth-child(even)
+{
+  border: 2px solid #000000;
+  background-color: lightskyblue;
+}
+
+th
+{
+  border: 2px solid #000000;
+  text-align: center;
+  background-color: lightgreen;
+}
+
+td
+{
+  border: 2px solid #000000;
+}

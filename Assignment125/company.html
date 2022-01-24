@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="author" content="Jingbo Wang" />
+    <link rel="stylesheet" href="125.css" />
     <title>ACME Widgets, Inc.</title>
   </head>
   <body>
     <h1>Welcome to ACME Widgets.Inc &reg;</h1>
     <p>
       Kinds of Adapters, Kitchen tools, SSD are on Sale!<br />
+    </p>
+    <p id="detailofdiscount">
       &nbsp; &nbsp; $100 with $10 discount<br />
-      &nbsp; &nbsp; $200 with $40 discount<br />
-      &nbsp; &nbsp; $300 with $80 discount<br />
-      &nbsp; &nbsp; $400 with $100 discount<br />
-      &nbsp; &nbsp; Share with your friend and get 5% more discount<br />
+        &nbsp; &nbsp; $200 with $40 discount<br />
+        &nbsp; &nbsp; $300 with $80 discount<br />
+        &nbsp; &nbsp; $400 with $100 discount<br />
+        &nbsp; &nbsp; Share with your friend and get 5% more discount<br />
+    </p>
+    <p>
       Come to see if there is something you want!<br />
-      Only 2022 January 13th - 2022 January 18th !!! &#128513;
+    </p>
+    <P>
+        Only <em id="discountdate">2022 January 13th - 2022 January 18th</em>
+          !!! &#128513;
     </p>
     <hr />
-    <ol type="i">
+    <ol type="i" class="itemtypeinlist">
       <li>
         Adapters
         <ul>
@@ -27,7 +35,7 @@
           <li>USB Adapter</li>
         </ul> 
       </li>            
-      <li>
+      <li> 
         Kitchen tools
         <ul>
           <li>Skimmer Ladle</li>
@@ -45,8 +53,8 @@
       </li>
     </ol>
     <hr />
-    <table> 
-      <caption>Products Details</caption>
+    <table id="discountitems"> 
+      <caption id="titlename">Products Details</caption>
       <tr>
         <th>Product Type</th>
         <th>Product Name</th>
@@ -55,7 +63,7 @@
         <th>Product Price</th>
       </tr>
       <tr>
-        <td rowspan="3">Adapters</td>
+        <td rowspan="3" class="type">Adapters</td>
         <td>Multiport Adapter</td>
         <td>
           <a href="multiport_adapter.html"> 
@@ -63,7 +71,7 @@
             Adapter for MacBook Air/Pro
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/71tChtCquSL._AC_SX679_.jpg" 
             alt="Multiport Adapter" Width="100" height="100" />
@@ -79,7 +87,7 @@
               Wall Charger 
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
              src="https://m.media-amazon.com/images/I/51TObDkKtCL._AC_SX679_.jpg" 
              alt="Worldwide Travel Adapter" Width="110" height="120" />
@@ -94,7 +102,7 @@
               Adapter 2 Pack
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
              src="https://m.media-amazon.com/images/I/61hh93h2ZbL._AC_SX679_.jpg" 
              alt="USB Adapter" Width="120" height="100" />
@@ -102,7 +110,7 @@
         <td>$ &nbsp; 1.99</td>
       </tr>
       <tr>
-        <td rowspan="3">Kitchen tools</td>
+        <td rowspan="3" class="type">Kitchen tools</td>
         <td>Skimmer Ladle</td>
         <td>
           <a href="skimmer_ladle.html">
@@ -111,7 +119,7 @@
               for Cooking and Frying
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/71tYmHz-YDL._AC_SX679_.jpg" 
             alt="Skimmer Ladle" Width="110" height="90" />
@@ -127,7 +135,7 @@
               & Vegetable Grater
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/71WSyuALyRL._AC_SX679_.jpg" 
             alt="Zester & Grater" Width="120" height="130" />
@@ -144,7 +152,7 @@
               and Bowls 
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/610ItsMB06L._AC_SX679_.jpg" 
             alt="Strainer for Pots" Width="120" height="130" />
@@ -152,9 +160,9 @@
         <td>$ &nbsp; 15.99</td>
       </tr>
       <tr>
-        <td rowspan="3">SSD</td>
+        <td rowspan="3" class="type">SSD</td>
         <td>SAMSUNG 980 SSD 1TB M.2</td>
-        <td>
+        <td class="picture">
           <a href="samsung_980_ssd_1tb_m2.html">
             SAMSUNG 980 SSD 1TB M.2<br />
             NVMe Interface Internal Solid<br />  
@@ -162,7 +170,7 @@
             Technology for Gaming
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/714VYiAYssL._AC_SX679_.jpg" 
             alt="SAMSUNG 980 SSD 1TB M.2" Width="130" height="40" />
@@ -177,7 +185,7 @@
               NVMe Gen3 M.2 2280 Internal SSD 
           </a>
         </td>
-        <td>
+        <td class="picture">
           <img 
             src="https://m.media-amazon.com/images/I/71u-Ggd7jzL._AC_SX679_.jpg" 
             alt="SK hynix Gold P31 SSD 1TB M.2" Width="135" height="160" />
@@ -195,7 +203,7 @@
             Internal SSD  
           </a>
         </td>
-        <td>
+        <td class="picture"> 
           <img 
             src="https://m.media-amazon.com/images/I/61kdV+Nig5L._AC_SX679_.jpg" 
             alt="Seagate FireCuda 530 2TB Solid State Drive M.2" 
