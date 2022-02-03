@@ -1,0 +1,258 @@
+/*
+Jingbo Wang
+*/
+
+body
+{
+  font-family: sans-serif;
+  background: white;
+  color:black;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+aside
+{
+  grid-column: 5 / 6;
+  grid-row: 1 / 4;
+  border-width: 2px;
+  border-color: blue;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.itemtypeinlist:hover
+{
+  font-style: italic;
+  font-weight: bold;
+  font-size: large;
+}
+
+.picture
+{
+  text-align: center;
+}
+
+.type
+{
+  text-align: center;
+  background-color: rgb(241, 36, 248);
+
+}
+
+.itemdescription
+{
+  border: 2px dotted black;
+  margin-left: auto;
+  margin-right: 100px;
+}
+
+.detailofdiscount
+{
+  text-align: center;
+  color: blueviolet;
+  font-size: small;
+}
+
+#container
+{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-column-gap: 20px;
+}
+
+#acmeloge
+{
+  background-image: url(ACME.png);
+  background-repeat: no-repeat;
+  background-size: 35%;
+  background-position: top right;
+}
+
+#saledate
+{
+  grid-column: 1 / 5;
+  grid-row: 3 / 4;
+  border-width: 2px;
+  border-color: green;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itemlist
+{
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+  border-width: 2px;
+  border-color: yellow;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#producttable
+{
+
+  grid-column: 1 / 5;
+  grid-row: 2 / 3;
+  border-width: 2px;
+  border-color: orange;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#detailofdiscounttitle
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#detailofdiscount1:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#detailofdiscount2:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#detailofdiscount3:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#detailofdiscount4:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+#detailofdiscount5:hover
+{
+  color: blueviolet;
+  font-weight: bold;
+  font-size: large;
+}
+
+#discountdate
+{
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#titlename
+{
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#discountitems
+{
+  border-collapse: collapse;
+}
+
+tr:nth-child(odd)
+{
+  background-color: yellow;
+}
+
+tr:nth-child(even)
+{
+  border: 2px solid black;
+  background-color: lightskyblue;
+}
+
+th
+{
+  border: 2px solid black;
+  text-align: center;
+  background-color: lightgreen;
+}
+
+td
+{
+  border: 2px solid black;
+}
+
+.outside
+{
+  border: 2px solid;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(175, 149, 3);
+}
+
+#outside
+{
+  position: fixed;
+  width: 200px;
+  right: 50px;
+  bottom: 50px;
+  z-index: -1;
+}
+
+.inside
+{
+  border: 1px dotted;
+  margin: 5px;
+  padding: 5px;
+  background-color: yellow;
+}
+
+#inside
+{
+  position: absolute;
+  width: 50px;
+  left: 10px;
+  top: -10px;
+}
+
+header
+{
+  border-width: 2px;
+  border-color: blueviolet;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
+  background: lightgray;
+}
+
+footer
+{
+  width: auto;
+  border-width: 2px;
+  border-color: indigo;
+  border-style: solid;
+  border-radius: 20px;
+  margin: 1px;
+  text-align: center;
+  font-size: 100%;
+  font-weight: bold;
+  background: lightgray;
+}
