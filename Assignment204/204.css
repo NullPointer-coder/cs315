@@ -58,13 +58,6 @@ aside
   font-size: large;
 }
 
-#inlined
-{
-  padding: 0.75em;
-  border: 1px solid;
-  display: inline;
-}
-
 #container
 {
   display: grid;
@@ -182,6 +175,14 @@ aside
   border-collapse: collapse;
 }
 
+#product
+{
+  display: grid;
+  grid-template-rows:  auto;
+  grid-template-columns: auto;
+  grid-column-gap: 20px;
+}
+
 tr:nth-child(odd)
 {
   background-color: yellow;
@@ -218,8 +219,8 @@ td
   position: fixed;
   width: 200px;
   right: 50px;
-  bottom: 50px;
-  z-index: -1;
+  bottom: 400px;
+  z-index: 1;
 }
 
 .inside
