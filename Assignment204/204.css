@@ -53,7 +53,6 @@ aside
 
 .detailofdiscount
 {
-  text-align: center;
   color: blueviolet;
   font-size: large;
 }
@@ -124,6 +123,7 @@ aside
 
 #detailofdiscount1:hover
 {
+  text-align: center;
   color: blueviolet;
   font-weight: bold;
   font-size: x-large;
@@ -131,6 +131,7 @@ aside
 
 #detailofdiscount2:hover
 {
+  text-align: center;
   color: blueviolet;
   font-weight: bold;
   font-size: x-large;
@@ -138,6 +139,7 @@ aside
 
 #detailofdiscount3:hover
 {
+  text-align: center;
   color: blueviolet;
   font-weight: bold;
   font-size: x-large;
@@ -145,12 +147,14 @@ aside
 
 #detailofdiscount4:hover
 {
+  text-align: center;
   color: blueviolet;
   font-weight: bold;
   font-size: x-large;
 }
 #detailofdiscount5:hover
 {
+  text-align: center;
   color: blueviolet;
   font-weight: bold;
   font-size: x-large;
