@@ -26,7 +26,6 @@ function store_words($file_name)
   $lines = file($file_name, FILE_IGNORE_NEW_LINES);
   while($index < count($lines))
   {
-    $line = array($lines[$index]);
     array_push($result, array($lines[$index]));
     $index++;
   }
