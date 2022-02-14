@@ -223,7 +223,7 @@ function search_word($file_name, $searched_word, $part)
         {
           delete_word(DEFINITION_FILENAME, $delete_words,
                       $delete_part_of_speech);
-          $deletestatement = "Successfully delete!";
+          $deletestatement = "Successfully delete";
         }
         else
         {
