@@ -1,0 +1,56 @@
+Test 01
+Jingbo Wang
+2.
+(A)
+Not correct, the second <ul></ ul> should inside of <li><\ li>.
+Because inside  of <ul></ ul>, it only contents <li><\ li> elments, and do not
+have any elments.
+(B)
+It is correct.
+
+3.
+(a)
+id; id
+(b)
+class; class
+(c)
+neither; none of them
+(d)
+class; class
+(e)
+class; pesudo-element
+
+4.
+We cannot name the calss or id as color or apperence, because
+we can  change the name of class or id, and we should name the class
+and id as functions. It means that what the class or id does in this part.
+
+5.
+1: red
+2: blue
+3: yellow
+4: orange
+
+6.
+block element:
+2.
+4.
+8.
+11.
+13.
+15.
+18.
+23.
+
+inline element:
+1.
+7.
+9.
+10.
+20.
+21.
+
+self-closing:
+5.
+
+
