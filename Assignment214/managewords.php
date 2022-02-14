@@ -187,7 +187,7 @@ function search_word($file_name, $searched_word, $part)
     <h1>Manage Words</h1>
     <h2>Add New word</h2>
     <?php
-      $statement = "";
+      $addstatement = "";
       if (isset($_POST) &&
           isset($_POST['words']) &&
           preg_match('|^[a-z]+$|', $_POST['words']) &&
@@ -198,19 +198,21 @@ function search_word($file_name, $searched_word, $part)
         $part_of_speech = $_POST['partofspeech'];
         $definition = strtolower($_POST['definition']);
         $words = "$word\t$part_of_speech\t$definition\n";
-        if(!search_word(DEFINITION_FILENAME, $word, $part_of_speech))
+        if (!search_word(DEFINITION_FILENAME, $word, $part_of_speech))
         {
-          $statement = "Successfully add the new word!";
+          $addstatement = "Successfully add the new word!";
           file_put_contents(DEFINITION_FILENAME, $words,
                        LOCK_EX | FILE_APPEND);
           store_words(DEFINITION_FILENAME);
         }
         else
         {
-          $statement = "Fail to add the new word! This word already added!";
+          $addstatement = "Fail to add the new word!
+                          This word already added!";
         }
       }
-
+      
+      $deletestatement = "";
       if (isset($_POST) &&
           isset($_POST['deleteword']) &&
           preg_match('|^[a-z]+$|', $_POST['deleteword']))
@@ -222,11 +224,11 @@ function search_word($file_name, $searched_word, $part)
         {
           delete_word(DEFINITION_FILENAME, $delete_words,
                       $delete_part_of_speech);
-          $statement = "Successfully delete";
+          $deletestatement = "Successfully delete";
         }
         else
         {
-          $statement = "Do not Find it! Try again...";
+          $deletestatement = "Do not Find it! Try again...";
         }
       }
     ?>
@@ -254,6 +256,10 @@ function search_word($file_name, $searched_word, $part)
         <input type="submit" value="Submit Report" name="submit" />
       </p>
     </form>
+    <h3>
+      <?= $addstatement?>
+    </h3>
+    
     <hr />
     <h2>Delete word</h2>
     <form method="post" action="managewords.php">
@@ -276,7 +282,7 @@ function search_word($file_name, $searched_word, $part)
       </p>
     </form>
     <h3>
-      <?= $statement ?>
+      <?= $deletestatement ?>
     </h3>
   </body>
 </html>
