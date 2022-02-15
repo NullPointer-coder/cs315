@@ -101,7 +101,8 @@ function delete_word($file_name,$delete_words, $delete_part_of_speech)
   {
     if($index != $position)
     {
-      list($word, $partofspeech, $definition) = explode("\t", $lines[$index]);
+      list($word, $partofspeech, $definition)
+          = explode("\t", $lines[$index]);
 
       $words = "$word\t$partofspeech\t$definition\n";
       file_put_contents(DEFINITION_FILENAME, $words,
@@ -189,7 +190,7 @@ function search_word($file_name, $searched_word, $part)
       $addstatement = "";
       if (isset($_POST) &&
           isset($_POST['words']) &&
-          preg_match('|^[a-z]+$|', $_POST['words']) &&
+          preg_match('|^[A-Za-z]+$|', $_POST['words']) &&
           isset($_POST['definition']) &&
           preg_match('|^[A-Za-z;( -]+|', $_POST['definition']))
       {
