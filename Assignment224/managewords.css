@@ -1,0 +1,66 @@
+/*
+Jingbo Wang
+ */
+
+body
+{
+  width: 80%;
+  margin-left: 5em;
+  margin-right: auto;
+  font-family: sans-serif;
+}
+.statement
+{
+  color: red;
+}
+
+.partofspeech
+{
+  font-weight: bold;
+  font-style: italic;
+  color: cadetblue;
+}
+.definition
+{
+  color: cornflowerblue;
+}
+#partsofspeech
+{
+  font-weight: bold;
+  font-style: italic;
+  font-size: small;
+  color: cornflowerblue;
+}
+#partstatement
+{
+  color: darkblue;
+}
+
+#container
+{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 20px;
+}
+#submitbutton
+{
+  grid-column: 1 / 8;
+  grid-row: 8 / 9;
+}
+
+#dictionary
+{
+  grid-column: 1 / 8;
+  grid-row: 1 / 8;
+  border-width: 2px;
+  border-color: green;
+  border-radius: 20px;
+  border-style: solid;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-y: scroll;
+}
+
+
