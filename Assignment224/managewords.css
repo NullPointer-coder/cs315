@@ -9,6 +9,7 @@ body
   margin-right: auto;
   font-family: sans-serif;
 }
+
 .statement
 {
   color: red;
@@ -20,10 +21,12 @@ body
   font-style: italic;
   color: cadetblue;
 }
+
 .definition
 {
   color: cornflowerblue;
 }
+
 #partsofspeech
 {
   font-weight: bold;
@@ -31,6 +34,7 @@ body
   font-size: small;
   color: cornflowerblue;
 }
+
 #partstatement
 {
   color: darkblue;
@@ -43,6 +47,7 @@ body
   grid-template-rows: repeat(8, 1fr);
   grid-column-gap: 20px;
 }
+
 #submitbutton
 {
   grid-column: 1 / 8;
@@ -63,5 +68,3 @@ body
   height: 400px;
   overflow-y: scroll;
 }
-
-
