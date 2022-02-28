@@ -40,7 +40,7 @@ function store_words($file_name)
   {
     list($word, $partofspeech, $definition) = explode("\t", $oneword);
 
-    $words = "$word\t$partofspeech\t$definition". PHP_EOL;
+    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
     file_put_contents(DEFINITION_FILENAME, $words);
   }
   else
@@ -48,7 +48,7 @@ function store_words($file_name)
     $line_count++;
     list($word, $partofspeech, $definition) = explode("\t", $oneword);
 
-    $words = "$word\t$partofspeech\t$definition". PHP_EOL;
+    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
     file_put_contents(DEFINITION_FILENAME, $words);
   }
 
@@ -59,7 +59,7 @@ function store_words($file_name)
     $oneword = $line[0];
     list($word, $partofspeech, $definition) = explode("\t", $oneword);
 
-    $words = "$word\t$partofspeech\t$definition". PHP_EOL;
+    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
     file_put_contents(DEFINITION_FILENAME, $words,
       LOCK_EX | FILE_APPEND);
     $line_count++;
@@ -82,7 +82,7 @@ function delete_word($file_name, $position)
   {
     $index++;
     list($word, $partofspeech, $definition) = explode("\t", $lines[$index]);
-    $words = "$word\t$partofspeech\t$definition". PHP_EOL;
+    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
     file_put_contents(DEFINITION_FILENAME, $words);
   }
   else
@@ -100,7 +100,7 @@ function delete_word($file_name, $position)
       list($word, $partofspeech, $definition)
           = explode("\t", $lines[$index]);
 
-      $words = "$word\t$partofspeech\t$definition". PHP_EOL;
+      $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
       file_put_contents(DEFINITION_FILENAME, $words,
         LOCK_EX | FILE_APPEND);
       $index++;
@@ -135,7 +135,6 @@ function search_part($file_name, $searched_part)
   return false;
 }
 
-
 /**
  * could search the key word in the input file
  * @param $file_name  name of the input file
@@ -165,6 +164,27 @@ function search_word($file_name, $searched_word, $part)
   }
   return false;
 }
+/**
+ * to bool the string is printable or not
+ * @param $string the input string
+ * @return true if the input string is not printable; false is printable 
+ */
+function is_not_printable($string)
+{
+  $index = 0;
+  $lowwer = 0x19;
+  $upper = 0x7f;
+  $done = false;
+  while ($index < strlen($string) && !$done)
+  {
+    if ($lowwer > dechex(ord($string[$index])) && dechex($string[$index]) > $upper)
+    {
+      $done = true;
+    }
+    $index++;
+  }
+  return $done;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,22 +205,40 @@ function search_word($file_name, $searched_word, $part)
       {
         $word = strtolower($_POST['words']);
         $part_of_speech = $_POST['partofspeech'];
-        $definition = htmlspecialchars($_POST['definition']);
-        $definition = strtolower($definition);
-        
-        $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
+        $definition = $_POST['definition'];
+        var_dump($definition);
+        var_dump(is_not_printable($definition));
         if (!search_word(DEFINITION_FILENAME, $word, $part_of_speech)
-            && ctype_graph($definition))
+            && !empty($part_of_speech) 
+            && !is_not_printable($definition))
         {
-          $addstatement = "Successfully add the new word!";
+          $definition = htmlspecialchars($definition);
+          $definition = strtolower($definition);
+          $definition = ltrim($definition);
+          $definition = trim($definition);
+          $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
+          $addstatement = "Successfully added!";
           file_put_contents(DEFINITION_FILENAME, $words,
                        LOCK_EX | FILE_APPEND);
           store_words(DEFINITION_FILENAME);
         }
         else
         {
-          $addstatement = "Fail to add the new word!
-                           This word already added!";
+          if (empty($part_of_speech))
+          {
+            $addstatement = "Fail to add the new word!\n 
+                            No part of speech!";
+          }
+          elseif (search_word(DEFINITION_FILENAME, $word, $part_of_speech))
+          {
+            $addstatement = "Fail to add the new word!\n 
+                             Having a same word with part of speech!";
+          }
+          elseif (is_not_printable($definition))
+          {
+            $addstatement = "Fail to add the new word!\n 
+                             Difination is not printable!";
+          }
         }
       }
       
@@ -217,8 +255,9 @@ function search_word($file_name, $searched_word, $part)
         }
         $deletestatement = "Successfully delete!";
       }
-      $addpartofspeech = "Add a new part of speech or not!\n
-                          (If add a new one and submit)";
+      
+      $addpartofspeech = "* Add a part of speech that 
+                           does not exist in the list and submit";
       
       if (isset($_POST) &&  isset($_POST['newspeech']) &&
            preg_match('|^[A-Za-z]+$|', $_POST['newspeech']))
@@ -226,9 +265,9 @@ function search_word($file_name, $searched_word, $part)
         $new_part_of_speech = strtolower($_POST['newspeech']);
         if (!(search_part(PARTS_OF_SPEECH, $new_part_of_speech)))
         {
-          file_put_contents(PARTS_OF_SPEECH, $new_part_of_speech. PHP_EOL,
+          file_put_contents(PARTS_OF_SPEECH, $new_part_of_speech . PHP_EOL,
                             LOCK_EX | FILE_APPEND);
-          $addpartofspeech = "Add new part of speech scuccessfully!";
+          $addpartofspeech = "scuccessfully added in the list!";
         }
       }
     ?>
@@ -271,11 +310,11 @@ function search_word($file_name, $searched_word, $part)
       <h2>Add New word</h2>
       <p>
         <label for="words">Word:</label>
-        <input type="text" id="words" name="words" required/> &ast;
+        <input type="text" id="words" name="words" /> &ast;
       </p>
       <p>
         <label for="partofspeech">Parts of speech:</label>
-        <select name="partofspeech" id="partofspeech" required>
+        <select name="partofspeech" id="partofspeech">
           <option value="">--- Choose the part of speech ---</option>
           <?php
             $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
@@ -296,7 +335,7 @@ function search_word($file_name, $searched_word, $part)
       <p>
         <label for="definition">Definition:</label>
         <textarea id="definition" name="definition"
-                  placeholder="Add definition here" required></textarea> &ast;
+                  placeholder="Add definition here"></textarea> &ast;
       </p>
       <p>
         <input type="submit" value="Submit Report" name="submit" />
@@ -317,7 +356,7 @@ function search_word($file_name, $searched_word, $part)
           <dl>
             <?php
               $line_count = 0;
-              $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);;
+              $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);
               $wordlist = array();
               while ($line_count < count($lines)):
                 $wordlist[] = explode("\t", rtrim($lines[$line_count]));
