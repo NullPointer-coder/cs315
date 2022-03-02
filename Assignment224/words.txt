@@ -1,8 +1,4 @@
-a	adadjective	a
-a	adverb	sdasdas
-a	noun	asdfsafsaf
-a	preposition	        sdsdfdsf&lt;b&gt;hahah&lt;/b&gt;jj
-a	verb	***
+aaa	adverb	asdas
 aaa	noun	asdas
 assiduous	adjective	marked by careful unremitting attention or persistent application
 augury	noun	omen sign

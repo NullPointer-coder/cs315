@@ -71,7 +71,7 @@ function store_words($file_name)
  * @param $array the each line in the words.txt
  * @param $delete_count the number of lines deleted
  */
-function delete_word($array,$delete_count)
+function delete_word($array, $delete_count)
 {
   $index = 0;
   $done = false;
