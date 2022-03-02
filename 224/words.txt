@@ -372,12 +372,6 @@ tangential	adjective	suddenly changeable
 tassel	noun	a dangling ornament made by laying parallel a bunch of cords or threads of even length and fastening them at one end
 taut	adjective	having no give or slack; tightly drawn; high-strung, tense
 tautology	noun	needless repetition of an idea, statement, or word; an instance of tautology
-tawdry	adjective	brassy; tastelessly showy
-teetotal	adjective	of, relating to, or practicing teetotalism
-temerity	noun	unreasonable or foolhardy contempt of danger or opposition; rashness, recklessness
-tepid	adjective	moderately warm; lukewarm
-timorous	adjective	of a timid disposition; fearful
-torpid	adjective	having lost motion or the power of exertion or feeling; dormant, numb; sluggish in functioning or acting
 tout	verb	to spy on; watch
 transgress	verb	to violate a command or law; sin
 transitory	adjective	tending to pass away; not persistent
