@@ -1,12 +1,3 @@
-apostasy	noun	renunciation of a religious faith
-apposite	adjective	highly pertinent, relevant, or appropriate
-approbation	noun	approval
-arabesque	adjective	Arabian in fashion
-argot	noun	an often more or less secret vocabulary and idiom peculiar to a particular group
-ascetic	adjective	practicing strict self-denial as a measure of personal and especially spiritual discipline
-asperity	noun	rigor, severity
-assiduous	adjective	marked by careful unremitting attention or persistent application
-astringent	adjective	causing contraction of soft organic tissues; styptic, puckery
 augury	noun	omen sign
 aver	verb	to verify or prove to be true in pleading a cause; to allege or assert in pleading
 baleful	adjective	harmful ominous causing evil
