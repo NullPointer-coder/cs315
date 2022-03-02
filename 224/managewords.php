@@ -69,14 +69,16 @@ function store_words($file_name)
 /**
  * to delete the input word
  * @param $array the each line in the words.txt
+ * @param $delete_count the number of lines deleted
  */
-function delete_word($array)
+function delete_word($array,$delete_count)
 {
   $index = 0;
   $done = false;
-  while ($index < count($array) && !$done)
+  $left_sum = count($array) + $delete_count;
+  while ($index < $left_sum && !$done)
   {
-    if(!array_key_exists($index, $array))
+    if (!array_key_exists($index, $array))
     {
       $index++;
     }
@@ -89,7 +91,7 @@ function delete_word($array)
       $index++;
     }
   }
-  while ($index < count($array))
+  while ($index < $left_sum)
   {
     if (!array_key_exists($index, $array))
     {
@@ -167,6 +169,7 @@ function search_word($file_name, $searched_word, $part)
  */
 function is_not_printable($string)
 {
+  $string = str_replace("\n", '', $string);
   $index = 0;
   $done = false;
   if (!ctype_space($string))
@@ -176,7 +179,7 @@ function is_not_printable($string)
       if (ctype_space($string[$index]))
       {
         $index++;
-      } 
+      }
       else
       {
         if (!ctype_graph($string[$index]))
@@ -222,7 +225,9 @@ function is_not_printable($string)
           $definition = strtolower($definition);
           $definition = ltrim($definition);
           $definition = trim($definition);
+          $definition = str_replace("\n", '', $definition);
           $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
+
           $addstatement = "Successfully added!";
           file_put_contents(DEFINITION_FILENAME, $words,
                        LOCK_EX | FILE_APPEND);
@@ -249,11 +254,13 @@ function is_not_printable($string)
       }
       
       $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);
-      
+   
       $deletestatement = "delete a word you want!";
       if (isset($_POST) && isset($_POST['delete']))
       {
+        
         $delete_word_lines = $_POST['delete'];
+       
         $index = 0;
         while ($index < count($delete_word_lines))
         {
@@ -261,7 +268,7 @@ function is_not_printable($string)
           unset($lines[$position]);
           $index++;
         }
-        delete_word($lines);
+        delete_word($lines, count($delete_word_lines));
         $deletestatement = "Successfully delete!";
       }
       
@@ -300,7 +307,6 @@ function is_not_printable($string)
         $index++;
       endwhile;
       ?>
-    </p>
     </p>
     <form method="post" action="managewords.php">
       <p>
@@ -359,8 +365,8 @@ function is_not_printable($string)
     <h3 class="statement">
       <?= $deletestatement ?>
     </h3>
-    <form method="post" action="managewords.php" method="get">
-      <div id="container">
+    <form action="managewords.php" method="post">
+      <form id="container">
         <section id="dictionary">
           <dl>
             <?php
@@ -386,7 +392,7 @@ function is_not_printable($string)
                 $index++;
               endforeach;
             ?>
-          <dl>
+          </dl>
         </section>
         <section id="submitbutton">
           <p>
