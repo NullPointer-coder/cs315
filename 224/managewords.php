@@ -169,7 +169,6 @@ function search_word($file_name, $searched_word, $part)
  */
 function is_not_printable($string)
 {
-  $string = str_replace("\n", '', $string);
   $index = 0;
   $done = false;
   if (!ctype_space($string))
@@ -217,6 +216,7 @@ function is_not_printable($string)
         $word = strtolower($_POST['words']);
         $part_of_speech = $_POST['partofspeech'];
         $definition = $_POST['definition'];
+        $definition = str_replace("\n", '', $definition);
         if (!search_word(DEFINITION_FILENAME, $word, $part_of_speech)
             && !empty($part_of_speech) 
             && !is_not_printable($definition))
@@ -225,7 +225,6 @@ function is_not_printable($string)
           $definition = strtolower($definition);
           $definition = ltrim($definition);
           $definition = trim($definition);
-          $definition = str_replace("\n", '', $definition);
           $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
 
           $addstatement = "Successfully added!";
