@@ -68,45 +68,43 @@ function store_words($file_name)
 
 /**
  * to delete the input word
- * @param $file_name name of the input file
- * @param $delete_words the word need to be deleted
- * @param $delete_part_of_speech the part of speech of deleted word
+ * @param $array the each line in the words.txt
+ * @param $delete_count the number of lines deleted
  */
-function delete_word($file_name, $position)
+function delete_word($array, $delete_count)
 {
-  $lines = file($file_name, FILE_IGNORE_NEW_LINES);
-  unset($lines[$position]);
-  
   $index = 0;
-  if($position == $index)
+  $done = false;
+  $left_sum = count($array) + $delete_count;
+  while ($index < $left_sum && !$done)
   {
-    $index++;
-    list($word, $partofspeech, $definition) = explode("\t", $lines[$index]);
-    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
-    file_put_contents(DEFINITION_FILENAME, $words);
+    if (!array_key_exists($index, $array))
+    {
+      $index++;
+    }
+    else
+    {
+      list($word, $partofspeech, $definition) = explode("\t", $array[$index]);
+      $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
+      file_put_contents(DEFINITION_FILENAME, $words);
+      $done = true;
+      $index++;
+    }
   }
-  else
+  while ($index < $left_sum)
   {
-    list($word, $partofspeech, $definition) = explode("\t", $lines[$index]);
-    $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
-    file_put_contents(DEFINITION_FILENAME, $words);
-  }
-  
-  $index++;
-  while ($index < count($lines) + 1)
-  {
-    if($index != $position)
+    if (!array_key_exists($index, $array))
+    {
+      $index++;
+    }
+    else
     {
       list($word, $partofspeech, $definition)
-          = explode("\t", $lines[$index]);
+          = explode("\t", $array[$index]);
 
       $words = "$word\t$partofspeech\t$definition" . PHP_EOL;
       file_put_contents(DEFINITION_FILENAME, $words,
-        LOCK_EX | FILE_APPEND);
-      $index++;
-    }
-    elseif (!array_key_exists($index, $lines))
-    {
+                        LOCK_EX | FILE_APPEND);
       $index++;
     }
   }
@@ -172,16 +170,28 @@ function search_word($file_name, $searched_word, $part)
 function is_not_printable($string)
 {
   $index = 0;
-  $lowwer = 0x19;
-  $upper = 0x7f;
   $done = false;
-  while ($index < strlen($string) && !$done)
+  if (!ctype_space($string))
   {
-    if ($lowwer > dechex(ord($string[$index])) && dechex($string[$index]) > $upper)
-    {
-      $done = true;
+    while ($index < strlen($string) && !$done)
+    { 
+      if (ctype_space($string[$index]))
+      {
+        $index++;
+      }
+      else
+      {
+        if (!ctype_graph($string[$index]))
+        {
+          $done = true;
+        }
+        $index++;
+      }
     }
-    $index++;
+  }
+  else
+  {
+    return $done = true;
   }
   return $done;
 }
@@ -195,7 +205,9 @@ function is_not_printable($string)
     <link rel="stylesheet" href="managewords.css">
   </head>
   <body>
-    <h1>Manage Words</h1>
+    <header>
+      <h1>Manage GRE Vocabulary Words File</h1>
+    </header>
     <?php
       $addstatement = "Add a new word you want!";
       if (isset($_POST) &&
@@ -206,8 +218,7 @@ function is_not_printable($string)
         $word = strtolower($_POST['words']);
         $part_of_speech = $_POST['partofspeech'];
         $definition = $_POST['definition'];
-        var_dump($definition);
-        var_dump(is_not_printable($definition));
+        $definition = str_replace("\n", '', $definition);
         if (!search_word(DEFINITION_FILENAME, $word, $part_of_speech)
             && !empty($part_of_speech) 
             && !is_not_printable($definition))
@@ -217,6 +228,7 @@ function is_not_printable($string)
           $definition = ltrim($definition);
           $definition = trim($definition);
           $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
+
           $addstatement = "Successfully added!";
           file_put_contents(DEFINITION_FILENAME, $words,
                        LOCK_EX | FILE_APPEND);
@@ -242,17 +254,22 @@ function is_not_printable($string)
         }
       }
       
+      $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);
+   
       $deletestatement = "delete a word you want!";
-      if (isset($_POST) && isset($_POST["delete"]))
+      if (isset($_POST) && isset($_POST['delete']))
       {
+        
         $delete_word_lines = $_POST['delete'];
+       
         $index = 0;
         while ($index < count($delete_word_lines))
         {
           $position = $delete_word_lines[$index];
-          delete_word(DEFINITION_FILENAME, $position);
+          unset($lines[$position]);
           $index++;
         }
+        delete_word($lines, count($delete_word_lines));
         $deletestatement = "Successfully delete!";
       }
       
@@ -271,102 +288,106 @@ function is_not_printable($string)
         }
       }
     ?>
-    <p>
-      Part of speech list:
-    </p>
-    <p id="partsofspeech">
-      <?php
-        $index = 0;
-        $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
-        while ($index < count($lines)):
-          $part_of_speech = $lines[$index];
-      ?>
-        
-          <?php  if($index == count($lines) - 1):?>
-            <?= $part_of_speech ?>.
-          <?php else: ?>
-            <?= $part_of_speech ?>,
-          <?php endif; ?>
-      <?php
-        $index++;
-      endwhile;
-      ?>
-    </p>
+    <p id="lastmodified">
+      Last modified: 16 March 2022
     </p>
     <form method="post" action="managewords.php">
-      <p>
-        <label for="newspeech">
-          Add new part of speech(Do not exist in list):
-        </label>
-        <input type="text" id="newspeech" name="newspeech"/>
-      </p>
-      <p>
-        <input type="submit" value="Submit" name="submit" />
-      </p>
-      <h3 id="partstatement">
-        <?= $addpartofspeech ?>
-      </h3>
+      <div id="choose-action">
+        <p class="cb-p">
+          <input type="checkbox" id="add-cb" /><br />
+          <label for="add-cb">Add a Word</label>
+        </p>
+        <p class="cb-p">
+          <input type="checkbox" id="add-pos-cb" /><br />
+          <label for="add-pos-cb">Add part of speech</label>
+        </p>
+        <p class="cb-p">
+          <input type="checkbox" id="del-cb" /><br />
+          <label for="del-cb">Delete Words</label>
+        </p>
+      </div>
       <hr />
-      <h2>Add New word</h2>
-      <p>
-        <label for="words">Word:</label>
-        <input type="text" id="words" name="words" /> &ast;
-      </p>
-      <p>
-        <label for="partofspeech">Parts of speech:</label>
-        <select name="partofspeech" id="partofspeech">
-          <option value="">--- Choose the part of speech ---</option>
-          <?php
-            $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
-            $part_of_speech = null;
-            $line_count = 0;
-            while ($line_count < count($lines)):
-              $part_of_speech = $lines[$line_count];
-          ?>
+      <div id="add-wrapper" class="invisible">
+        <section id="add-section">
+          <label for="words">Word:</label>
+          <input type="text" id="words" name="words"  size="10"/>
+          <label for="partofspeech">Parts of speech:</label>
+          <select name="partofspeech" id="partofspeech">
+            <option value="">
+              &mdash; Choose the part of speech &mdash;
+            </option>
+            <?php
+              $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
+              $part_of_speech = null;
+              $line_count = 0;
+              while ($line_count < count($lines)):
+                $part_of_speech = $lines[$line_count];
+            ?>
             <option value="<?= $part_of_speech ?>">
               <?= $part_of_speech ?>
             </option>
-          <?php
-              $line_count++;
-           endwhile;
-          ?>
-        </select> &ast;
-      </p>
-      <p>
-        <label for="definition">Definition:</label>
-        <textarea id="definition" name="definition"
-                  placeholder="Add definition here"></textarea> &ast;
-      </p>
-      <p>
-        <input type="submit" value="Submit Report" name="submit" />
-      </p>
-    </form>
-    <h3 class="statement">
-      <?= $addstatement ?>
-    </h3>
-    
-    <hr />
-    <h2>Delete word</h2>
-    <h3 class="statement">
-      <?= $deletestatement ?>
-    </h3>
-    <form method="post" action="managewords.php" method="get">
-      <div id="container">
-        <section id="dictionary">
-          <dl>
+            <?php
+             $line_count++;
+             endwhile;
+            ?>
+          </select>
+          <label for="definition">Definition:</label>
+          <textarea
+            id="definition" name="definition"
+            placeholder="Add definition here" size="50"></textarea>
+          <button type="submit" id="add-submit">Add</button>
+        </section>
+      </div>
+      <div id="add-pos-wrapper" class="invisible">
+        <section id="add-pos-section">
+          <p>
+            Part of speech list:
+            <em id="partsofspeech">
+              <?php
+              $index = 0;
+              $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
+              while ($index < count($lines)):
+                $part_of_speech = $lines[$index];
+                ?>
+                <?php  if($index == count($lines) - 1):?>
+                <?= $part_of_speech ?>.
+              <?php else: ?>
+                <?= $part_of_speech ?>,
+              <?php endif; ?>
+                <?php
+                $index++;
+              endwhile;
+              ?>
+            </em>
+          </p>
+          <p>
+            <label for="newspeech">
+              Add new part of speech(Do not exist in list):
+            </label>
+            <input type="text" id="newspeech" name="newspeech" size="20"/>
+          </p>
+          <button type="submit" id="add-pos-submit" size="10">Add</button>
+        </section>
+      </div>
+      <div id="del-wrapper" class="invisible">
+        <section id="del-section">
+          <button type="submit" id="del-submit">Delete</button>
+          <dl id="word-list">
             <?php
               $line_count = 0;
               $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);
               $wordlist = array();
-              while ($line_count < count($lines)):
+              while ($line_count < count($lines))
+              {
                 $wordlist[] = explode("\t", rtrim($lines[$line_count]));
                 $line_count++;
-              endwhile;
+              }
               $index = 0;
               foreach ($wordlist as $row):
             ?>
             <dt>
-              <input type="checkbox" name="delete[]" value="<?= $index ?>" />
+              <input type="checkbox" name="delete[]"
+                     value="<?= $index ?>" />
               <?= $row[0] ?> :
               <span class="partofspeech"><?= $row[1] ?></span>
             </dt>
@@ -374,17 +395,13 @@ function is_not_printable($string)
               <?= $row[2] ?>
             </dd>
             <?php
-                $index++;
+              $index++;
               endforeach;
             ?>
           </dl>
         </section>
-        <section id="submitbutton">
-          <p>
-            <input type="submit" value="Delete Words" name="submit" />
-          </p>
-        </section>
       </div>
     </form>
+    <script src="managewords.js"></script>
   </body>
 </html>

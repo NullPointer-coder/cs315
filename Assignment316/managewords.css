@@ -2,12 +2,29 @@
 Jingbo Wang
  */
 
+header
+{
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin:10px;
+}
+
 body
 {
-  width: 80%;
-  margin-left: 5em;
+  width: 75%;
+  margin-left: auto;
   margin-right: auto;
   font-family: sans-serif;
+  padding: 10px;
+}
+.visible
+{
+  display: block;
+}
+.invisible
+{
+  display: none;
 }
 
 .statement
@@ -27,10 +44,104 @@ body
   color: cornflowerblue;
 }
 
+#lastmodified
+{
+  font-size: smaller;
+}
+
+#choose-action
+{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#choose-action p
+{
+  justify-self: center;
+  text-align: center;
+}
+
+#add-section
+{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 5fr;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#add-pos-section
+{
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.5fr;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#del-section
+{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#del-section dl
+{
+  height: 10em;
+  overflow: scroll;
+}
+#del-submit
+{
+  height: 2em;
+  width: 50%;
+  justify-self: center;
+}
+
+#words
+{
+  min-width: 15ch;
+  max-width: 15ch;
+}
+
+#partofspeech
+{
+  min-width: 30ch;
+  max-width: 30ch;
+}
+
+#definition
+{
+  min-width: 50ch;
+  max-width: 50ch;
+}
+
+#add-submit
+{
+  grid-column: 2/3;
+  justify-self: left;
+}
+
+#add-pos-submit
+{
+  justify-self: left;
+}
+
 #partsofspeech
 {
   font-weight: bold;
-  font-style: italic;
   font-size: small;
   color: cornflowerblue;
 }
@@ -38,33 +149,4 @@ body
 #partstatement
 {
   color: darkblue;
-}
-
-#container
-{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  grid-column-gap: 20px;
-}
-
-#submitbutton
-{
-  grid-column: 1 / 8;
-  grid-row: 8 / 9;
-}
-
-#dictionary
-{
-  grid-column: 1 / 8;
-  grid-row: 1 / 8;
-  border-width: 2px;
-  border-color: green;
-  border-radius: 20px;
-  border-style: solid;
-  margin: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: 400px;
-  overflow-y: scroll;
 }
