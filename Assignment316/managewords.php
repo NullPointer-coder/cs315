@@ -389,7 +389,7 @@ function is_not_printable($string)
               foreach ($wordlist as $row):
             ?>
             <dt>
-              <input type="checkbox" name="delete[]" class="words-list"
+              <input type="checkbox" name="delete[]" class="wordslist"
                      value="<?= $index ?>" />
               <?= $row[0] ?> :
               <span class="partofspeech"><?= $row[1] ?></span>

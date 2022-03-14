@@ -4,7 +4,7 @@
 
 const $ = (id) => document.getElementById(id);
 
-const  words_list = document.getElementsByClassName("words-list");
+const  words_list = document.getElementsByClassName("wordslist");
 
 window.onload = function ()
 {
@@ -26,6 +26,7 @@ function click_add()
 
   $("add-submit").disabled = true;
   $("add-pos-submit").disabled = true;
+  $("del-submit").disabled = true;
   $("words").addEventListener("change", show_add_button);
   $("partofspeech").addEventListener("change", show_add_button);
   $("definition").addEventListener("change", show_add_button);
@@ -52,6 +53,7 @@ function click_add_pos()
 
   $("add-submit").disabled = true;
   $("add-pos-submit").disabled = true;
+  $("del-submit").disabled = true;
   $("newspeech").addEventListener("change", show_add_pos_button);
 
   $("words").value = "";
@@ -78,6 +80,9 @@ function click_del()
 
   $("add-submit").disabled = true;
   $("add-pos-submit").disabled = true;
+  $("del-submit").disabled = true;
+
+  $("word-list").addEventListener("change", show_del_button);
 
   $("words").value = "";
   $("partofspeech").value = "";
@@ -109,5 +114,27 @@ function show_add_pos_button()
   else
   {
     $("add-pos-submit").disabled = false;
+  }
+}
+
+function show_del_button()
+{
+  let done = false;
+  let index = 0;
+  while(index < words_list.length && !done)
+  {
+    if(words_list[index].checked == true)
+    {
+      done = true;
+    }
+    index++;
+  }
+  if(!done)
+  {
+    $("del-submit").disabled = true;
+  }
+  else
+  {
+    $("del-submit").disabled = false;
   }
 }
