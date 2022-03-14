@@ -366,7 +366,10 @@ function is_not_printable($string)
             </label>
             <input type="text" id="newspeech" name="newspeech" size="20"/>
           </p>
-          <button type="submit" id="add-pos-submit" size="10">Add</button>
+          <button
+            type="submit" id="add-pos-submit" size="10">
+            Add
+          </button>
         </section>
       </div>
       <div id="del-wrapper" class="invisible">
@@ -386,7 +389,7 @@ function is_not_printable($string)
               foreach ($wordlist as $row):
             ?>
             <dt>
-              <input type="checkbox" name="delete[]"
+              <input type="checkbox" name="delete[]" class="words-list"
                      value="<?= $index ?>" />
               <?= $row[0] ?> :
               <span class="partofspeech"><?= $row[1] ?></span>

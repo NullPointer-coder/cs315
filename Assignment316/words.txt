@@ -1,4 +1,5 @@
 a	preposition	sda dfasfsafas
+abandon	adjective	asdad
 abandon	prepositionperp	aaaa
 assiduous	adjective	marked by careful unremitting attention or persistent application
 augury	noun	omen sign
