@@ -55,7 +55,6 @@ function click_add()
   $("words").addEventListener("change", word_test);
   $("partofspeech").addEventListener("change", part_of_speech_test);
   $("definition").addEventListener("change", definition_test);
-  $("add-submit").addEventListener("click", show_result);
 }
 
 function click_add_pos()
@@ -88,8 +87,6 @@ function click_add_pos()
   $("del-submit").disabled = true;
   $("newspeech").addEventListener("change", show_add_pos_button);
   $("newspeech").addEventListener("change", new_pos_test);
-
-  $("add-pos-submit").addEventListener("click", show_result);
 }
 
 function click_del()
@@ -117,20 +114,6 @@ function click_del()
   $("statement").style.color = "darkblue";
   $("statement").innerHTML = "Delete a word you want!";
   $("word-list").addEventListener("change", show_del_button);
-  $("del-submit").addEventListener("click", show_result);
-}
-
-function show_result()
-{
-  console.log($("sub-statement").firstChild);
-  if(fail.test($("sub-statement").textContent))
-  {
-    $("sub-statement").style.color = "red";
-  }
-  else if(success.test($("sub-statement").textContent))
-  {
-    $("sub-statement").style.color = "green";
-  }
 }
 
 function show_add_button()
