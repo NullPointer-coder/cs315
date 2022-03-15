@@ -3,3 +3,6 @@ adverb
 noun
 verb
 preposition
+conjunction
+pp
+p

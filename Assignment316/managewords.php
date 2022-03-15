@@ -191,7 +191,7 @@ function is_not_printable($string)
   }
   else
   {
-    return $done = true;
+    $done = true;
   }
   return $done;
 }
@@ -209,7 +209,15 @@ function is_not_printable($string)
       <h1>Manage GRE Vocabulary Words File</h1>
     </header>
     <?php
-      $addstatement = "Add a new word you want!";
+      $word = "";
+      $part_of_speech = "";
+      $definition = "";
+      $new_part_of_speech = "";
+      $addstatement="";
+      $deletestatement="";
+      $addpartofspeech="";
+      $delete_word_lines = array();
+      
       if (isset($_POST) &&
           isset($_POST['words']) &&
           preg_match('|^[A-Za-z]+$|', $_POST['words']) &&
@@ -236,27 +244,13 @@ function is_not_printable($string)
         }
         else
         {
-          if (empty($part_of_speech))
-          {
-            $addstatement = "Fail to add the new word!\n 
-                            No part of speech!";
-          }
-          elseif (search_word(DEFINITION_FILENAME, $word, $part_of_speech))
-          {
-            $addstatement = "Fail to add the new word!\n 
-                             Having a same word with part of speech!";
-          }
-          elseif (is_not_printable($definition))
-          {
-            $addstatement = "Fail to add the new word!\n 
-                             Difination is not printable!";
-          }
+          $addstatement = "Fail added!";
         }
       }
       
+      
       $lines = file(DEFINITION_FILENAME, FILE_IGNORE_NEW_LINES);
-   
-      $deletestatement = "delete a word you want!";
+      
       if (isset($_POST) && isset($_POST['delete']))
       {
         
@@ -273,9 +267,6 @@ function is_not_printable($string)
         $deletestatement = "Successfully delete!";
       }
       
-      $addpartofspeech = "* Add a part of speech that 
-                           does not exist in the list and submit";
-      
       if (isset($_POST) &&  isset($_POST['newspeech']) &&
            preg_match('|^[A-Za-z]+$|', $_POST['newspeech']))
       {
@@ -284,13 +275,45 @@ function is_not_printable($string)
         {
           file_put_contents(PARTS_OF_SPEECH, $new_part_of_speech . PHP_EOL,
                             LOCK_EX | FILE_APPEND);
-          $addpartofspeech = "scuccessfully added in the list!";
+          $addpartofspeech = "Scuccessfully added in the list!";
         }
+      }
+      else
+      {
+        $addpartofspeech = "Fail added!";
       }
     ?>
     <p id="lastmodified">
       Last modified: 16 March 2022
     </p>
+    
+      <?php if (!empty($word) && !empty($part_of_speech)
+        && !empty($definition)): ?>
+        <?php if (preg_match('|^S|', $addstatement)):?>
+          <h2 id="submit-success-statement">
+             <?= $addstatement ?>
+          </h2>
+        <?php else: ?>
+           <h2 id="submit-fail-statement">
+             <?= $addstatement ?>
+           </h2>
+        <?php endif; ?>
+      <?php elseif (!empty($new_part_of_speech)): ?>
+        <?php if (preg_match('|^S|', $addpartofspeech)):?>
+          <h2 id="submit-success-statement">
+            <?= $addpartofspeech ?>
+          </h2>
+        <?php else: ?>
+          <h2 id="submit-fail-statement">
+            <?= $addpartofspeech ?>
+         </h2>
+        <?php endif; ?>
+      <?php elseif (count($delete_word_lines) != 0): ?>
+        <h2 id="submit-success-statement">
+          <?= $deletestatement ?>
+        </h2>
+      <?php endif;?>
+
     <form method="post" action="managewords.php">
       <div id="choose-action">
         <p class="cb-p">
@@ -342,15 +365,15 @@ function is_not_printable($string)
         <section id="add-pos-section">
           <p>
             Part of speech list:
-            <em id="partsofspeech">
+            <em id="partofspeech-list">
               <?php
               $index = 0;
               $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
               while ($index < count($lines)):
                 $part_of_speech = $lines[$index];
                 ?>
-                <?php  if($index == count($lines) - 1):?>
-                <?= $part_of_speech ?>.
+                <?php  if ($index == count($lines) - 1):?>
+                <?= $part_of_speech ?>
               <?php else: ?>
                 <?= $part_of_speech ?>,
               <?php endif; ?>
@@ -390,9 +413,11 @@ function is_not_printable($string)
             ?>
             <dt>
               <input type="checkbox" name="delete[]" class="wordslist"
-                     value="<?= $index ?>" />
-              <?= $row[0] ?> :
-              <span class="partofspeech"><?= $row[1] ?></span>
+                     id="<?= $index ?>" value="<?= $index ?>" />
+              <label id="id-<?= $index ?>" for="<?= $index ?>">
+                <?= $row[0] ?> :
+                <span class="partofspeech"><?= $row[1] ?></span>
+              </label>
             </dt>
             <dd class="definition">
               <?= $row[2] ?>
@@ -404,6 +429,9 @@ function is_not_printable($string)
           </dl>
         </section>
       </div>
+      <h2 id="statement">
+        Select one to add a word, add part of speech or delete words!
+      </h2>
     </form>
     <script src="managewords.js"></script>
   </body>

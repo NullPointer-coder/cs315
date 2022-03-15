@@ -139,7 +139,7 @@ body
   justify-self: left;
 }
 
-#partsofspeech
+#partofspeech-list
 {
   font-weight: bold;
   font-size: small;
@@ -149,4 +149,19 @@ body
 #partstatement
 {
   color: darkblue;
+}
+
+#statement
+{
+  color: darkblue;
+}
+
+#submit-success-statement
+{
+  color: green;
+}
+
+#submit-fail-statement
+{
+  color: red;
 }

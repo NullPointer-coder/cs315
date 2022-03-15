@@ -1,6 +1,11 @@
-a	preposition	sda dfasfsafas
+a	adjective	dfsfsd
+a	adverb	fgdgd
 abandon	adjective	asdad
+abandon	adverb	asasda sadadsadada
+abandon	conjunction	lkhh
 abandon	prepositionperp	aaaa
+abandon	verb	aasmmmasdasdada
+as	adverb	asd
 assiduous	adjective	marked by careful unremitting attention or persistent application
 augury	noun	omen sign
 baleful	adjective	harmful ominous causing evil
@@ -8,4 +13,9 @@ bellicose	adjective	favoring or inclined to start quarrels or wars
 blithe	adjective	of a happy lighthearted character or disposition
 cajole	verb	to persuade with flattery or gentle urging especially in the face of reluctance; coax; to obtain from someone by gentle persuasion
 chaff	noun	the seed coverings and other debris separated from the seed in threshing grainabate
+sad	adjective	asda
+sada	adjective	sadd
+writ	adjective	lkmlkl
 writ	noun	sdfsdfsdfs
+writ	preposition	dfdasdasda
+z	adjective	sdada
