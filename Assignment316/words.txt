@@ -1,5 +1,6 @@
 a	adjective	dfsfsd
 a	adverb	fgdgd
+a	noun	ddaadasdasdada
 abandon	adjective	asdad
 abandon	adverb	asasda sadadsadada
 abandon	conjunction	lkhh

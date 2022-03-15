@@ -99,8 +99,6 @@ function click_del()
   $("add-pos-wrapper").classList.add("invisible");
   $("add-wrapper").classList.remove("visible");
   $("add-wrapper").classList.add("invisible");
-  $("sub-statement").classList.remove("visible");
-  $("sub-statement").classList.add("invisible");
 
   $("add-submit").disabled = true;
   $("add-pos-submit").disabled = true;
@@ -171,6 +169,7 @@ function word_test()
   {
     $("statement").style.color = "red";
     $("statement").innerHTML = "Word has some ILLEGAL symbols! Try again!";
+    $("words").value = "";
   }
   else
   {
@@ -195,6 +194,8 @@ function part_of_speech_test()
     {
       $("statement").style.color = "red";
       $("statement").innerHTML = "Already have this word! Try again!";
+      $("words").value = "";
+      $("partofspeech").value = "";
       done = true;
     }
     else
@@ -239,6 +240,7 @@ function definition_test()
     $("statement").style.color = "red";
     $("statement").innerHTML = "Definition has unprintable characters! " +
                                    "Try again!";
+    $("definition").value = "";
   }
   else
   {
@@ -254,6 +256,7 @@ function new_pos_test()
     $("statement").style.color = "red";
     $("statement").innerHTML = "New part of speech has some ILLEGAL symbols! "
                                     + "Try again!";
+    $("newspeech").value = "";
   }
   else
   {
@@ -274,6 +277,7 @@ function new_pos_test()
       $("statement").style.color = "red";
       $("statement").innerHTML = "Already has this part of speech! "
                                       + "Try again!";
+      $("newspeech").value = "";
       done = true;
     }
     else

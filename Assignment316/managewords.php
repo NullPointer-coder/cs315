@@ -213,9 +213,9 @@ function is_not_printable($string)
       $part_of_speech = "";
       $definition = "";
       $new_part_of_speech = "";
-      $addstatement="";
-      $deletestatement="";
-      $addpartofspeech="";
+      $addstatement ="";
+      $deletestatement ="";
+      $addpartofspeech ="";
       $delete_word_lines = array();
       
       if (isset($_POST) &&
@@ -286,34 +286,16 @@ function is_not_printable($string)
     <p id="lastmodified">
       Last modified: 16 March 2022
     </p>
-    
+    <h2 id="submit-success-statement">
       <?php if (!empty($word) && !empty($part_of_speech)
         && !empty($definition)): ?>
-        <?php if (preg_match('|^S|', $addstatement)):?>
-          <h2 id="submit-success-statement">
-             <?= $addstatement ?>
-          </h2>
-        <?php else: ?>
-           <h2 id="submit-fail-statement">
-             <?= $addstatement ?>
-           </h2>
-        <?php endif; ?>
+        <?= $addstatement ?>
       <?php elseif (!empty($new_part_of_speech)): ?>
-        <?php if (preg_match('|^S|', $addpartofspeech)):?>
-          <h2 id="submit-success-statement">
-            <?= $addpartofspeech ?>
-          </h2>
-        <?php else: ?>
-          <h2 id="submit-fail-statement">
-            <?= $addpartofspeech ?>
-         </h2>
-        <?php endif; ?>
+        <?= $addpartofspeech ?>
       <?php elseif (count($delete_word_lines) != 0): ?>
-        <h2 id="submit-success-statement">
           <?= $deletestatement ?>
-        </h2>
       <?php endif;?>
-
+    </h2>
     <form method="post" action="managewords.php">
       <div id="choose-action">
         <p class="cb-p">
