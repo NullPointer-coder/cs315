@@ -262,29 +262,30 @@ function new_pos_test()
   {
     $("statement").style.color = "darkblue";
     $("statement").innerHTML = "";
-  }
-  let part_of_speech_list = $("partofspeech-list").innerText;
-  let part = part_of_speech_list.split(",");
-  let index = 0;
-  let done = false;
-  let new_pos = $("newspeech").value;
-  new_pos = new_pos.toLowerCase();
-  while (index < part.length && !done)
-  {
-    part[index] = part[index].replace(white_space,"");
-    if (new_pos === part[index])
+
+    let part_of_speech_list = $("partofspeech-list").innerText;
+    let part = part_of_speech_list.split(",");
+    let index = 0;
+    let done = false;
+    let new_pos = $("newspeech").value;
+    new_pos = new_pos.toLowerCase();
+    while (index < part.length && !done)
     {
-      $("statement").style.color = "red";
-      $("statement").innerHTML = "Already has this part of speech! "
-                                      + "Try again!";
-      $("newspeech").value = "";
-      done = true;
+      part[index] = part[index].replace(white_space,"");
+      if (new_pos === part[index])
+      {
+        $("statement").style.color = "red";
+        $("statement").innerHTML = "Already has this part of speech! "
+            + "Try again!";
+        $("newspeech").value = "";
+        done = true;
+      }
+      else
+      {
+        $("statement").style.color = "darkblue";
+        $("statement").innerHTML = "";
+      }
+      index++;
     }
-    else
-    {
-      $("statement").style.color = "darkblue";
-      $("statement").innerHTML = "";
-    }
-    index++;
   }
 }
