@@ -226,14 +226,13 @@ function is_not_printable($string)
         $word = strtolower($_POST['words']);
         $part_of_speech = $_POST['partofspeech'];
         $definition = $_POST['definition'];
-        $definition = preg_replace("\n", "", $definition);
+        $definition = str_replace(["\r\n", "\r", "\n"], ' ', $definition);
         if (!search_word(DEFINITION_FILENAME, $word, $part_of_speech)
             && !empty($part_of_speech) 
             && !is_not_printable($definition))
         {
           $definition = htmlspecialchars($definition);
           $definition = strtolower($definition);
-          $definition = ltrim($definition);
           $definition = trim($definition);
           $words = "$word\t$part_of_speech\t$definition" . PHP_EOL;
 

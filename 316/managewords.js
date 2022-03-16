@@ -1,7 +1,13 @@
-// Jingbo Wang
+/*
+ Jingbo Wang
+*/
 
 "use strict";
 
+const white_space = /\s/g;
+const words_list = document.getElementsByClassName("wordslist");
+const printable_chars = /^[A-Za-z0-9!"#$%&'()*+,.\/:;<=>?@\[\] ^_`{|}~-]*$/i;
+const newline = ["\r\n", "\r", "\n"];
 const $ = (id) => document.getElementById(id);
 
 /**
@@ -27,7 +33,6 @@ window.onload = function ()
  */
 function click_add()
 {
-  let words_list = document.getElementsByClassName("wordslist");
   $("del-cb").checked = false;
   $("add-pos-cb").checked = false;
   $("add-wrapper").classList.remove("invisible");
@@ -81,7 +86,6 @@ function add_test()
  */
 function click_add_pos()
 {
-  let words_list = document.getElementsByClassName("wordslist");
   $("del-cb").checked = false;
   $("add-cb").checked = false;
   $("add-pos-wrapper").classList.remove("invisible");
@@ -180,7 +184,6 @@ function show_add_pos_button()
  */
 function show_del_button()
 {
-  let words_list = document.getElementsByClassName("wordslist");
   let done = false;
   let index = 0;
   while(index < words_list.length && !done)
@@ -238,8 +241,7 @@ function part_of_speech_test()
   {
     $("statement").style.color = "darkblue";
     $("statement").innerHTML = "";
-    let words_list = document.getElementsByClassName("wordslist");
-    let white_space = /\s/g;
+
     let index = 0;
     let done = false;
     let new_word = $("words").value;
@@ -269,14 +271,12 @@ function part_of_speech_test()
 }
 
 /**
- * To test definition is valid or not 
+ * To test definition is valid or not
  */
 function definition_test()
 {
-  let white_space = /\s/g;
-  let printable_chars = /^[A-Za-z0-9!"#$%&'()*+,.\/:;<=>?@\[\] ^_`{|}~-]*$/i;
   let string = $("definition").value;
-  string = string.replace("\n"," ");
+  string = string.replace(newline," ");
   let done = false;
   let  index = 0;
   if (string !== "")
@@ -320,7 +320,6 @@ function definition_test()
  */
 function new_pos_test()
 {
-  let white_space = /\s/g;
   let lowwer_chars = /^[a-z]+$/;
   if (!lowwer_chars.test($("newspeech").value))
   {
