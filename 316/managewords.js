@@ -16,7 +16,28 @@ const $ = (id) => document.getElementById(id);
 window.onchange = function ()
 {
   add_test();
+  cb_test();
 };
+
+/**
+ * when all cb.checked are false, they are invisible
+ */
+function cb_test()
+{
+  if ($("add-cb").checked === false
+      && $("add-pos-cb").checked === false  && $("del-cb").checked === false)
+  {
+    $("add-wrapper").classList.remove("visible");
+    $("add-wrapper").classList.add("invisible");
+    $("add-pos-wrapper").classList.remove("visible");
+    $("add-pos-wrapper").classList.add("invisible");
+    $("del-wrapper").classList.remove("visible");
+    $("del-wrapper").classList.add("invisible");
+    $("statement").style.color = "darkblue";
+    $("statement").innerHTML = "Select one to add a word, add part " +
+                               "of speech or delete words!";
+  }
+}
 
 /**
  * click different chosen checkbox to show diffferent perform
