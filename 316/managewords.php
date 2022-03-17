@@ -6,7 +6,7 @@ ini_set('display_errors', '1');
  * This program allows the user to add a new entry in the words file
  * and to delete an existing entry.
  * @author Jingbo Wang
- * @version 13 February 2022
+ * @version 17 February 2022
  */
 define('DEFINITION_FILENAME', 'words.txt');
 define('PARTS_OF_SPEECH', 'parts.txt');
@@ -213,9 +213,9 @@ function is_not_printable($string)
       $part_of_speech = "";
       $definition = "";
       $new_part_of_speech = "";
-      $addstatement ="";
-      $deletestatement ="";
-      $addpartofspeech ="";
+      $addstatement = "";
+      $deletestatement = "";
+      $addpartofspeech = "";
       $delete_word_lines = array();
       
       if (isset($_POST) &&
@@ -281,7 +281,7 @@ function is_not_printable($string)
       }
     ?>
     <p id="lastmodified">
-      Last modified: 16 March 2022
+      Last modified: 17 March 2022
     </p>
     <h2 id="submit-success-statement">
       <?php if (!empty($word) && !empty($part_of_speech)
@@ -323,7 +323,6 @@ function is_not_printable($string)
             </option>
             <?php
               $lines = file(PARTS_OF_SPEECH, FILE_IGNORE_NEW_LINES);
-              $part_of_speech = null;
               $line_count = 0;
               while ($line_count < count($lines)):
                 $part_of_speech = $lines[$line_count];

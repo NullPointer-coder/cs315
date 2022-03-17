@@ -16,7 +16,29 @@ const $ = (id) => document.getElementById(id);
 window.onchange = function ()
 {
   add_test();
+  cb_test();
 };
+
+
+/**
+ * when all cb.checked are false, they are invisible
+ */ 
+function cb_test()
+{
+  if($("add-cb").checked === false && $("add-pos-cb").checked === false
+     && $("del-cb").checked === false)
+  {
+    $("add-wrapper").classList.remove("visible");
+    $("add-wrapper").classList.add("invisible");
+    $("add-pos-wrapper").classList.remove("visible");
+    $("add-pos-wrapper").classList.add("invisible");
+    $("del-wrapper").classList.remove("visible");
+    $("del-wrapper").classList.add("invisible");
+    $("statement").style.color = "darkblue";
+    $("statement").innerHTML = "Select one to add a word,"
+                               + " add part of speech or delete words!";
+  }
+}
 
 /**
  * click different chosen checkbox to show diffferent perform
@@ -220,8 +242,8 @@ function word_test()
   }
   else
   {
-    $("statement").style.color = "darkblue";
-    $("statement").innerHTML = "";
+    $("statement").style.color = "green";
+    $("statement").innerHTML = "Correct style!";
   }
 }
 
@@ -239,8 +261,8 @@ function part_of_speech_test()
   }
   else
   {
-    $("statement").style.color = "darkblue";
-    $("statement").innerHTML = "";
+    $("statement").style.color = "green";
+    $("statement").innerHTML = "Correct!";
 
     let index = 0;
     let done = false;
@@ -262,8 +284,8 @@ function part_of_speech_test()
       }
       else
       {
-        $("statement").style.color = "darkblue";
-        $("statement").innerHTML = "";
+        $("statement").style.color = "green";
+        $("statement").innerHTML = "Not duplicate!";
       }
       index += 1;
     }
@@ -310,8 +332,8 @@ function definition_test()
   }
   else
   {
-    $("statement").style.color = "darkblue";
-    $("statement").innerHTML = "";
+    $("statement").style.color = "green";
+    $("statement").innerHTML = "Correct style!";
   }
 }
 
@@ -330,8 +352,8 @@ function new_pos_test()
   }
   else
   {
-    $("statement").style.color = "darkblue";
-    $("statement").innerHTML = "";
+    $("statement").style.color = "green";
+    $("statement").innerHTML = "Correct style!";
 
     let part_of_speech_list = $("partofspeech-list").innerText;
     let part = part_of_speech_list.split(",");
@@ -352,8 +374,8 @@ function new_pos_test()
       }
       else
       {
-        $("statement").style.color = "darkblue";
-        $("statement").innerHTML = "";
+        $("statement").style.color = "green";
+        $("statement").innerHTML = "Not duplicate!";
       }
       index += 1;
     }
