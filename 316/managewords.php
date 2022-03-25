@@ -10,6 +10,69 @@ ini_set('display_errors', '1');
  */
 define('DEFINITION_FILENAME', 'words.txt');
 define('PARTS_OF_SPEECH', 'parts.txt');
+define('NUMBER_OF_CHOICES', 4);
+
+/**
+ * read in a tab-separated array of lines consisting of a word,
+ * a part of speech, and a definition
+ *
+ * randomly choose one word, its part of speech, and its definition
+ *
+ * randomly choose (up to) n other definitions that match that part of
+ * speech
+ * @param $file name of the input file
+ * @param $number_to_get how many defs to get after the real one
+ * @return an array with element 0 an array of the word, the part of
+ * speech, and the definition, and the other elements the randomly
+ * chosen definitions
+ */
+function get_definitions($file, $number_to_get)
+{
+  $lines = file($file, FILE_IGNORE_NEW_LINES);
+  $random_index = array_rand($lines);
+  list($word, $part, $definition) = explode("\t", $lines[$random_index]);
+  unset($lines[$random_index]);
+
+  $result = array();
+  array_push($result, array($word, $part, $definition));
+
+  $matching_lines = preg_grep("/\t$part\t/", $lines);
+  shuffle($matching_lines);
+
+  $count = 0;
+  while ($count < count($matching_lines) && count($result) <= $number_to_get)
+  {
+    $line = $matching_lines[$count];
+    array_push($result, explode("\t", $line)[2]);
+    $count++;
+  }
+
+  return $result;
+}
+
+/**
+ * shuffle an array in place, preserving the key-value pairs
+ * @param $ary the array to shuffle
+ * @return true if given an array; false otherwise
+ */
+function shuffle_assoc(&$ary)
+{
+  if (!is_array($ary))
+  {
+    return false;
+  }
+
+  $keys = array_keys($ary);
+  shuffle($keys);
+  $new_ary = array();
+  foreach ($keys as $key)
+  {
+    $new_ary[$key] = $ary[$key];
+  }
+
+  $ary = $new_ary;
+  return true;
+}
 
 /**
  * could sort words in alphabetical order in the input file
@@ -280,6 +343,63 @@ function is_not_printable($string)
         $addpartofspeech = "Fail added!";
       }
     ?>
+
+    <?php
+    if (isset($_POST) &&
+      isset($_POST['word']) &&
+      preg_match('|^[A-Za-z]+$|', $_POST['word']) &&
+      isset($_POST['definition']) &&
+      preg_match('|^[A-Za-z;( -]+|', $_POST['definition']) &&
+      isset($_POST['guess']) &&
+      preg_match('|^[0-9]$|', $_POST['guess']) &&
+      isset($_POST['number_total']) &&
+      preg_match('|^[0-9]+$|', $_POST['number_total']) &&
+      isset($_POST['number_correct']) &&
+      preg_match('|^[0-9]+$|', $_POST['number_correct']))
+    {
+      $first_time = false;
+      $word = $_POST['word'];
+      $definition = $_POST['definition'];
+      $guess = $_POST['guess'];
+      $number_correct = $_POST['number_correct'];
+      $number_total = $_POST['number_total'];
+    }
+    else
+    {
+      $first_time = true;
+      $word = '';
+      $guess = 0;
+      $number_correct = 0;
+      $number_total = 0;
+    }
+    ?>
+    <?php if (!$first_time) : ?>
+      <?php if ($guess == 0) : ?>
+        <h2 class="correct">Correct!</h2>
+        <h3>Your score: <?= ++$number_correct ?> / <?= ++$number_total ?> </h3>
+      <?php else: ?>
+        <h2 class="incorrect">Incorrect!</h2>
+        <p class="incorrect">
+          The definition of <?= $word ?> is: <?= $definition ?>
+        </p>
+        <h3>Your score: <?= $number_correct ?> / <?= ++$number_total ?> </h3>
+      <?php endif; ?>
+    <?php endif; ?>
+
+    <?php
+    $choices = get_definitions(DEFINITION_FILENAME, NUMBER_OF_CHOICES);
+    list($word, $part, $real_definition) = $choices[0];
+    $all_definitions = array();
+    $all_definitions[0] = $real_definition;
+    $index = 1;
+    while ($index < count($choices))
+    {
+      $all_definitions[] = $choices[$index];
+      $index++;
+    }
+    shuffle_assoc($all_definitions);
+    ?>
+    
     <p id="lastmodified">
       Last modified: 17 March 2022
     </p>
@@ -297,21 +417,61 @@ function is_not_printable($string)
       <?php endif;?>
     </h2>
     <form method="post" action="managewords.php">
-      <div id="choose-action">
+      <div id="learn-test-manage">
         <p class="cb-p">
-          <input type="checkbox" id="add-cb" /><br />
-          <label for="add-cb">Add a Word</label>
+          <input type="checkbox" id="learn-cb" /><br />
+          <label for="learn-cb">Learn Words</label>
         </p>
         <p class="cb-p">
-          <input type="checkbox" id="add-pos-cb" /><br />
-          <label for="add-pos-cb">Add part of speech</label>
+          <input type="checkbox" id="test-cb" /><br />
+          <label for="test-cb">Words Test</label>
         </p>
         <p class="cb-p">
-          <input type="checkbox" id="del-cb" /><br />
-          <label for="del-cb">Delete Words</label>
+          <input type="checkbox" id="manage-cb" /><br />
+          <label for="manage-cb">Manage Words</label>
         </p>
       </div>
+      <div id="choose-cb" class="invisible">
+        <section id="choose-action">
+          <p class="cb-p">
+            <input type="checkbox" id="add-cb" /><br />
+            <label for="add-cb">Add a Word</label>
+          </p>
+          <p class="cb-p">
+            <input type="checkbox" id="add-pos-cb" /><br />
+            <label for="add-pos-cb">Add part of speech</label>
+          </p>
+          <p class="cb-p">
+            <input type="checkbox" id="del-cb" /><br />
+            <label for="del-cb">Delete Words</label>
+          </p>
+      </div>
       <hr />
+      <div id="test-wrapper" class="visible">
+        <h2>
+          <?= $word ?> &mdash;
+          <span class="partofspeech"><?= $part ?></span>
+        </h2>
+          <ul id="choices">
+
+            <?php foreach ($all_definitions as $index => $definition): ?>
+              <li>
+                <input type="radio" name="guess" value="<?= $index ?>" />
+                <?= $definition ?>
+              </li>
+            <?php endforeach; ?>
+
+          </ul>
+
+          <input type="hidden" name="word" value="<?= $word ?>" />
+          <input type="hidden" name="number_total"
+                 value="<?= $number_total ?>" />
+          <input type="hidden" name="number_correct"
+                 value="<?= $number_correct ?>" />
+          <input type="hidden" name="definition"
+                 value="<?= $real_definition ?>" />
+          <button id="add-submit" type="submit">Submit</button>
+      </div>
       <div id="add-wrapper" class="invisible">
         <section id="add-section">
           <label for="words">Word:</label>

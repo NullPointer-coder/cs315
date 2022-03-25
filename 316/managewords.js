@@ -19,29 +19,8 @@ window.onchange = function ()
   cb_test();
 };
 
-
 /**
- * when all cb.checked are false, they are invisible
- */ 
-function cb_test()
-{
-  if($("add-cb").checked === false && $("add-pos-cb").checked === false
-     && $("del-cb").checked === false)
-  {
-    $("add-wrapper").classList.remove("visible");
-    $("add-wrapper").classList.add("invisible");
-    $("add-pos-wrapper").classList.remove("visible");
-    $("add-pos-wrapper").classList.add("invisible");
-    $("del-wrapper").classList.remove("visible");
-    $("del-wrapper").classList.add("invisible");
-    $("statement").style.color = "darkblue";
-    $("statement").innerHTML = "Select one to add a word,"
-                               + " add part of speech or delete words!";
-  }
-}
-
-/**
- * when all cb.checked are false, they are invisible
+ * when all cb checked are false, they are invisible
  */
 function cb_test()
 {
@@ -58,20 +37,62 @@ function cb_test()
     $("statement").innerHTML = "Select one to add a word, add part " +
                                "of speech or delete words!";
   }
+
+  if ($("learn-cb").checked === false
+      && $("test-cb").checked === false  && $("manage-cb").checked === false)
+  {
+    $("choose-cb").classList.remove("visible");
+    $("choose-cb").classList.add("invisible");
+  }
 }
 
 /**
- * click different chosen checkbox to show diffferent perform
+ * click different chosen checkbox to show different perform
  */
 window.onload = function ()
 {
+  $("learn-cb").onclick= click_learn;
+  $("test-cb").onclick = click_test;
+  $("manage-cb").onclick = click_manage;
+
+};
+
+function click_learn()
+{
+  $("manage-cb").checked = false;
+  $("test-cb").checked = false;
+  $("choose-cb").classList.remove("visible");
+  $("choose-cb").classList.add("invisible");
+  $("test-wrapper").classList.remove("visible");
+  $("test-wrapper").classList.add("invisible");
+}
+
+function click_test()
+{
+  $("learn-cb").checked = false;
+  $("manage-cb").checked = false;
+  $("choose-cb").classList.remove("visible");
+  $("choose-cb").classList.add("invisible");
+  $("test-wrapper").classList.remove("invisible");
+  $("test-wrapper").classList.add("visible");
+}
+
+function click_manage()
+{
+  $("learn-cb").checked = false;
+  $("test-cb").checked = false;
+  $("choose-cb").classList.remove("invisible");
+  $("choose-cb").classList.add("visible");
+  $("test-wrapper").classList.remove("visible");
+  $("test-wrapper").classList.add("invisible");
+
   $("add-cb").onclick = click_add;
   $("add-pos-cb").onclick = click_add_pos;
   $("del-cb").onclick = click_del;
-};
+}
 
 /**
- * To add, test a legal words, part of speach and definition
+ * To add, test a legal words, part of speech and definition
  */
 function click_add()
 {
@@ -124,7 +145,7 @@ function add_test()
 }
 
 /**
- * To add, test a new legal part of speach
+ * To add, test a new legal part of speech
  */
 function click_add_pos()
 {
@@ -207,7 +228,7 @@ function show_add_button()
 }
 
 /**
- * To show add-pos-button when all elements is valid and not null
+ * To show add-pos-button when all elements are valid and not null
  */
 function show_add_pos_button()
 {
@@ -252,8 +273,8 @@ function show_del_button()
  */
 function word_test()
 {
-  let lowwer_chars = /^[a-z]+$/;
-  if (!lowwer_chars.test($("words").value))
+  let lower_chars = /^[a-z]+$/;
+  if (!lower_chars.test($("words").value))
   {
     $("statement").style.color = "red";
     $("statement").innerHTML = "Word has some ILLEGAL symbols!"
@@ -268,7 +289,7 @@ function word_test()
 }
 
 /**
- * To test wheather they have duplicate word and part of speech or not
+ * To test whether they have duplicate word and part of speech or not
  */
 function part_of_speech_test()
 {
@@ -362,8 +383,8 @@ function definition_test()
  */
 function new_pos_test()
 {
-  let lowwer_chars = /^[a-z]+$/;
-  if (!lowwer_chars.test($("newspeech").value))
+  let lower_chars = /^[a-z]+$/;
+  if (!lower_chars.test($("newspeech").value))
   {
     $("statement").style.color = "red";
     $("statement").innerHTML = "New part of speech has some ILLEGAL symbols!"

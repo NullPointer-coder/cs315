@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0a96407-25c1-4255-bcf9-531a2a4d47eb" name="变更" comment="" />
+    <list default="true" id="a2e5ab62-4906-4f16-ab08-5889bd461799" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managewords.css" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managewords.js" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managewords.php" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managewords.phps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/parts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/words.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,17 +28,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectId" id="26TU7WQOEyYHiH5uijW5xkncJpZ" />
+  <component name="ProjectId" id="26XDu6hNgU0eQGiyBFRnmJDr3Hp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -41,27 +47,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="c0a96407-25c1-4255-bcf9-531a2a4d47eb" name="变更" comment="" />
-      <created>1647446904415</created>
+      <changelist id="a2e5ab62-4906-4f16-ab08-5889bd461799" name="变更" comment="" />
+      <created>1647561257107</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1647446904415</updated>
-      <workItem from="1647446905620" duration="4920000" />
+      <updated>1647561257107</updated>
+      <workItem from="1647561258511" duration="7934000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
