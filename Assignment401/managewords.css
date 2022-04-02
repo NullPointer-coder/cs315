@@ -1,0 +1,117 @@
+/*
+  Jingbo Wang
+*/
+
+header
+{
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin:10px;
+}
+
+body
+{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+  padding: 10px;
+}
+
+.partofspeech
+{
+  font-weight: bold;
+  font-style: italic;
+  color: cadetblue;
+}
+
+.definition
+{
+  color: cornflowerblue;
+}
+
+.hidden
+{
+  display: none;
+}
+
+.visible
+{
+  display: block;
+}
+
+.invisible
+{
+  display: none;
+}
+
+#statement
+{
+  color: darkblue;
+}
+
+#lastmodified
+{
+  font-size: smaller;
+}
+
+#choose-action
+{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#choose-action p
+{
+  justify-self: center;
+  text-align: center;
+}
+
+#add-section
+{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 5fr;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#words
+{
+  min-width: 15ch;
+  max-width: 15ch;
+}
+
+#partofspeech
+{
+  min-width: 30ch;
+  max-width: 30ch;
+}
+
+#definition
+{
+  min-width: 50ch;
+  max-width: 50ch;
+}
+
+#disp-wrapper
+{
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#disp-wrapper
+{
+  height: 30em;
+  overflow: scroll;
+}

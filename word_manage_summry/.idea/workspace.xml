@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2e5ab62-4906-4f16-ab08-5889bd461799" name="变更" comment="">
+    <list default="true" id="a2e5ab62-4906-4f16-ab08-5889bd461799" name="变更" comment="变更">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managewords.css" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managewords.js" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managewords.php" beforeDir="false" afterPath="$PROJECT_DIR$/managewords.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managewords.phps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/parts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/words.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment316/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment316/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +33,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -53,6 +49,8 @@
       <option name="presentableId" value="Default" />
       <updated>1647561257107</updated>
       <workItem from="1647561258511" duration="7934000" />
+      <workItem from="1648498488601" duration="570000" />
+      <workItem from="1648765532053" duration="16000" />
     </task>
     <servers />
   </component>

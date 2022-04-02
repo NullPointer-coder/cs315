@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Words Manager</title>
+    <meta name="author" content="Jingbo Wang" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="managewords.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Manage GRE Vocabulary Words File</h1>
+    </header>
+    <p id="lastmodified">
+      Last modified: 1 April 2022
+    </p>
+    <div id="choose-action">
+        <p class="cb-p">
+          <input type="checkbox" id="add-cb" /><br />
+          <label for="add-cb">Add a Word</label>
+        </p>
+        <p class="cb-p">
+          <input type="checkbox" id="disp-cb" /><br />
+          <label for="disp-cb">Display Words</label>
+        </p>
+    </div>
+    <hr />
+    <div id="add-wrapper" class="invisible">
+      <section id="add-section">
+        <label for="words">Word:</label>
+        <input type="text" id="words" name="words"  size="10"/>
+        <label for="partofspeech">Parts of speech:</label>
+        <select name="partofspeech" id="partofspeech">
+          <option value="">
+            &mdash; Choose the part of speech &mdash;
+          </option>
+          <option value="adjective">adjective</option>
+          <option value="adverb">adverb</option>
+          <option value="noun">noun</option>
+          <option value="verb">verb</option>
+        </select>
+        <label for="definition">Definition:</label>
+        <textarea
+          id="definition" name="definition"
+          placeholder="Add definition here"></textarea>
+        <button type="submit" id="add-xhr">Add</button>
+      </section>
+    </div>
+    <div id="disp-wrapper" class="invisible">
+    </div>
+    <h2 id="statement">
+      Select one to begin!
+    </h2>
+    <script src="managewords.js"></script>
+  </body>
+</html>
