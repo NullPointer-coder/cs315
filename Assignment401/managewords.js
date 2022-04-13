@@ -11,12 +11,14 @@ const lower_chars = /^[a-z]+$/;
 const $ = (id) => document.getElementById(id);
 
 /**
- * always test words, part of speech, and definition
+ * click different chosen checkbox to show different perform
  */
-window.onchange = function ()
+window.onload = function ()
 {
-  add_test();
-  cb_test();
+  $("add-cb").onclick = click_add;
+  $("disp-cb").onclick = click_disp;
+  $("partofspeech").onchange = add_test;
+  $("choose-action").onchange = cb_test;
 };
 
 /**
@@ -38,14 +40,6 @@ function cb_test()
   }
 }
 
-/**
- * click different chosen checkbox to show different perform
- */
-window.onload = function ()
-{
-  $("add-cb").onclick = click_add;
-  $("disp-cb").onclick = click_disp;
-};
 
 /**
  * To add, test a legal words, part of speach and definition
@@ -93,17 +87,17 @@ function save_word()
   {
     if (definition[index] === "&")
     {
-      definition = definition.replace("&","∆");
-      index++;
+      definition = definition.replace("&", "∆");
+      index +=  1;
     }
     else if (definition[index] === "+")
     {
-      definition = definition.replace("+","ß");
-      index++;
+      definition = definition.replace("+", "ß");
+      index +=  1;
     }
     else
     {
-      index++;
+      index +=  1;
     }
   }
   const added_word =[$("words").value, $("partofspeech").value
@@ -188,7 +182,7 @@ function part_of_speech_test()
           $("statement").style.color = "green";
           $("statement").innerHTML = "Not duplicate!";
         }
-        index++;
+        index +=  1;
       }
     };
     xhr.send();
@@ -207,11 +201,11 @@ function definition_test()
     if (string[string_index] === "&")
     {
       string = string.replace(newline, " ");
-      string_index++;
+      string_index += 1;
     }
     else
     {
-      string_index++;
+      string_index += 1;
     }
   }
 
