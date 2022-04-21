@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Words Manager</title>
+    <meta name="author" content="Jingbo Wang" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="managewords.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Manage GRE Vocabulary Words File</h1>
+    </header>
+    <p id="lastmodified">
+      Last modified: 20 April 2022
+    </p>
+    <div id="choose-action">
+        <p class="cb-p">
+          <input type="checkbox" id="add-cb" /><br />
+          <label for="add-cb">Add a Word</label>
+        </p>
+        <p class="cb-p">
+          <input type="checkbox" id="del-cb" /><br />
+          <label for="del-cb">Delete Words</label>
+        </p>
+    </div>
+    <hr />
+    <div id="add-wrapper" class="invisible">
+      <section id="add-section">
+        <label for="word">Word:</label>
+        <input type="text" id="word" name="word"  size="10"/>
+        <label for="partofspeech">Parts of speech:</label>
+        <select name="partofspeech" id="partofspeech">
+          <option value="">
+            &mdash; Choose the part of speech &mdash;
+          </option>
+          <option value="adjective">adjective</option>
+          <option value="adverb">adverb</option>
+          <option value="noun">noun</option>
+          <option value="verb">verb</option>
+        </select>
+        <label for="definition">Definition:</label>
+        <textarea
+          id="definition" name="definition"
+          placeholder="Add definition here"></textarea>
+        <button type="submit" id="add-xhr">Add</button>
+      </section>
+    </div>
+    <div id="del-wrapper" class="invisible">
+        <label for="del_word">word:</label>
+        <input type="text" id="del_word" name="del_word"  size="20"/>
+        <button type="submit" id="del-xhr">Delete</button>
+    </div>
+    <h2 id="statement" class="normal">
+      Select one to begin!
+    </h2>
+    <div id="disp-wrapper" class="invisible">
+    </div>
+    <script src="managewords.js"></script>
+  </body>
+</html>
